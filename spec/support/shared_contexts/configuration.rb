@@ -4,7 +4,7 @@ shared_context 'configuration' do
   before do
     Warden::JWTAuth.configure do |config|
       config.secret = '123'
-      config.secret_rotation = '456'
+      config.rotation_secret = '456'
       config.dispatch_requests = [['POST', %r{^/sign_in$}]]
       config.revocation_requests = [['DELETE', %r{^/sign_out$}]]
       config.revocation_strategies = { user: Fixtures::RevocationStrategy.new }
@@ -15,7 +15,7 @@ shared_context 'configuration' do
 
   let(:config) { Warden::JWTAuth.config }
   let(:secret) { config.secret }
-  let(:secret_rotation) { config.secret_rotation }
+  let(:rotation_secret) { config.secret_rotation }
   let(:dispatch_requests) { config.dispatch_requests }
   let(:revocation_requests) { config.revocation_requests }
   let(:revocation_strategies) { config.revocation_strategies }
