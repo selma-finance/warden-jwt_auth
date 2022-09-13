@@ -42,7 +42,7 @@ module Warden
     setting :secret
 
     # The old secret used for rotation
-    setting :secret_rotation
+    setting :rotation_secret
 
     # The algorithm used to encode the token
     setting :algorithm, default: 'HS256'
