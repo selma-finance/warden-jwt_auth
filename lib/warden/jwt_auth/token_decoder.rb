@@ -23,11 +23,14 @@ module Warden
                      algorithm: algorithm,
                      verify_jti: true)[0]
         rescue JWT::VerificationError => e
-          JWT.decode(token,
+          p "Trying to decode JWT token with rotation secret"
+          decoded = JWT.decode(token,
                      rotation_secret,
                      true,
                      algorithm: algorithm,
-                     verify_jti: true)[0]
+                     verify_jti: true)
+          p "Successfully decoded with rotation secret"
+          decoded[0]
         end
       end
     end
